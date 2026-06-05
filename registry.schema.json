@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FlexNetOS/network_hub/registry.schema.json",
+  "title": "network_hub registry",
+  "description": "Catalog of network configs and service topology. registry.json is the source of truth; scripts/validate.py enforces it. See template_hub/docs/hub-standard.md.",
+  "type": "object",
+  "required": ["version", "updated", "org", "hub", "networks"],
+  "properties": {
+    "schema": { "type": "string" },
+    "version": { "type": "string" },
+    "updated": { "type": "string" },
+    "org": { "type": "string" },
+    "hub": { "const": "network_hub" },
+    "description": { "type": "string" },
+    "networks": { "type": "array", "items": { "$ref": "#/$defs/network" } }
+  },
+  "$defs": {
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "displayName", "category", "status", "summary", "protocol", "doc"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "displayName": { "type": "string" },
+        "category": { "enum": ["host", "service-endpoint", "tunnel", "proxy", "vpn", "topology"] },
+        "status": { "enum": ["stable", "beta", "experimental", "deprecated"] },
+        "summary": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "protocol": { "enum": ["http", "https", "tcp", "udp", "ssh", "grpc", "ws"] },
+        "host": { "type": "string" },
+        "port": { "type": "integer" },
+        "configPath": { "type": "string" },
+        "reachableFrom": { "enum": ["local", "lan", "public"] },
+        "auth": { "enum": ["none", "oauth", "api-key", "mtls", "ssh-key"] },
+        "doc": { "type": "string" },
+        "snippet": { "type": "string" },
+        "upstream": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
