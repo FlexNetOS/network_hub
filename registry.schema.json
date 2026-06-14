@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/FlexNetOS/network_hub/registry.schema.json",
   "title": "network_hub registry",
-  "description": "Catalog of network configs and service topology. registry.json is the source of truth; scripts/validate.py enforces it. See template_hub/docs/hub-standard.md.",
+  "description": "Catalog of network configs and service topology. registry.json is the source of truth; the Rust-native scripts/validate.sh (hub-validate crate) enforces it. See template_hub/docs/hub-standard.md.",
   "type": "object",
   "required": ["version", "updated", "org", "hub", "networks"],
   "properties": {
