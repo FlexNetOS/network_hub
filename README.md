@@ -2,8 +2,9 @@
 
 **Catalog of network configs and service topology used across the FlexNetOS meta workspace.**
 
-A FlexNetOS hub: `registry.json` is the single source of truth, `scripts/validate.py`
-keeps it consistent (CI-enforced), and this README mirrors it. Follows the
+A FlexNetOS hub: `registry.json` is the single source of truth, `scripts/validate.sh`
+(the Rust-native `hub-validate` crate) keeps it consistent (CI-enforced), and this README
+mirrors it. Follows the
 [Hub Standard](https://github.com/FlexNetOS/template_hub/blob/master/docs/hub-standard.md).
 
 ## Scope
@@ -15,11 +16,9 @@ Out of scope: secrets and credentials → [`flexnetos_secrets`](https://github.c
 
 ## Catalog
 
-_No entries yet — this hub is at v0.1.0 (foundation set, population pending)._
-
 | Endpoint | Protocol | Category | Status | Doc |
 |----------|----------|----------|--------|-----|
-| _(none)_ | | | | |
+| [Obscura](entries/obscura.md) | ws | service-endpoint | beta | [doc](entries/obscura.md) |
 
 ## Entry shape
 
@@ -49,7 +48,7 @@ Full field reference: [`registry.schema.json`](registry.schema.json).
 ## Adding an endpoint
 
 Add an entry to `registry.json`, create `entries/<id>.md` (and a `snippets/<id>.*`
-config fragment if useful), add a Catalog row, then run `python3 scripts/validate.py`.
+config fragment if useful), add a Catalog row, then run `bash scripts/validate.sh`.
 See the [Hub Standard](https://github.com/FlexNetOS/template_hub/blob/master/docs/hub-standard.md).
 
 ## Project Referances: Network tools for Native Rust Crates

@@ -1,4 +1,8 @@
 # OS / editor scratch
 .DS_Store
 .claude/
+
+# Rust validator build artifacts
+scripts/hub-validate/target/
+
 # Nested-meta child clones are added here lazily (keep in sync with .meta.yaml)

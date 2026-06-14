@@ -1,0 +1,21 @@
+# Standalone crate: network_hub is gitignored from the parent meta workspace,
+# so this manifest must opt out of the parent Cargo workspace.
+[workspace]
+
+[package]
+name = "hub-validate"
+version = "0.1.0"
+edition = "2021"
+description = "Rust-native validator for the network_hub catalog (Hub Standard). Replaces the former scripts/validate.py."
+license = "MIT"
+
+[[bin]]
+name = "hub-validate"
+path = "src/main.rs"
+
+[dependencies]
+# preserve_order keeps existing registry.json key/entry ordering stable on rewrite.
+serde_json = { version = "1.0", features = ["preserve_order"] }
+
+[profile.release]
+opt-level = 1

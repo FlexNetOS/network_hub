@@ -1,1 +1,24 @@
-{"schema":"./registry.schema.json","version":"0.1.0","updated":"2026-06-04","org":"FlexNetOS","hub":"network_hub","description":"Catalog of network configs and service topology used across the FlexNetOS meta workspace.","networks":[]}
+{
+  "schema": "./registry.schema.json",
+  "version": "0.2.0",
+  "updated": "2026-06-13",
+  "org": "FlexNetOS",
+  "hub": "network_hub",
+  "description": "Catalog of network configs and service topology used across the FlexNetOS meta workspace.",
+  "networks": [
+    {
+      "id": "obscura",
+      "displayName": "Obscura",
+      "category": "service-endpoint",
+      "status": "beta",
+      "summary": "Governed web-egress / headless-browser engine for AI agents — the network plane's web-egress engine, governed by lane per ADR-0001. Exposes MCP (obscura mcp) + CDP (obscura serve :9222) service endpoints plus an obscura fetch CLI.",
+      "tags": ["browser", "mcp", "cdp", "web-egress", "network-plane"],
+      "protocol": "ws",
+      "reachableFrom": "local",
+      "auth": "none",
+      "upstream": "https://github.com/h4ckf0r0day/obscura",
+      "doc": "entries/obscura.md",
+      "notes": "Rust headless-browser engine (8-crate workspace, real V8). Primary surface here is the CDP server (ws, obscura serve --port 9222); also serves MCP over stdio or --http --port 3000 (browser_navigate / browser_fetch / ...) and a CLI (obscura fetch <url>). lane<->obscura seam (ADR-0001): live web egress is governed by lane, which pins obscura's egress through its proxy + CA via the `lane web` seam; live obscura wiring is still gated on the seam. Fork of upstream h4ckf0r0day/obscura; brought green + given custom-CA trust in Phase A1 (FlexNetOS/obscura PRs #2, #3)."
+    }
+  ]
+}
